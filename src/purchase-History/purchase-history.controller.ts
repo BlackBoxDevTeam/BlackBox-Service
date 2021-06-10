@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { purchaseHistoryDto } from './Models/purchase-history-Dto';
-import { purchaseHistoryFilterDto } from './Models/purchase-history-filter-Dto';
+import { purchaseHistoryDto } from './Models/purchase-history-dto';
+import { purchaseHistoryFilterDto } from './Models/purchase-history-filter-dto';
 import { PurchaseHistoryService } from './purchase-history.service';
 
 @Controller('purchase-history')

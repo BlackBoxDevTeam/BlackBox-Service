@@ -1,8 +1,9 @@
 import { EntitySchema } from "typeorm";
-import { purchaseHistory } from "./purchase-history-Model";
+import { purchaseHistory } from "./purchase-history-model";
 
 export const purchaseHistorySchema = new EntitySchema<purchaseHistory>({
     name:'purchaseHistory',
+    target:purchaseHistory,
     columns:{
         id:{
             type:Number,
@@ -16,6 +17,15 @@ export const purchaseHistorySchema = new EntitySchema<purchaseHistory>({
             type:Date,
             createDate:true
         },
+
+        pointsPurchase:{
+            type:Number,
+            nullable:true
+        },
+        pointsQuickPurchase:{
+            type:Number,
+            nullable:true
+        }
         
     },
     relations:{
@@ -27,12 +37,5 @@ export const purchaseHistorySchema = new EntitySchema<purchaseHistory>({
            
             
         },
-
-        Club:{
-            type:'many-to-one',
-            target:"Club",
-            inverseSide:'PurchaseRecords',
-            nullable:true
-        }
     }
 })

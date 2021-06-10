@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ClubsModule } from './clubs/clubs.module';
 import { CustomersModule } from './customers/customers.module';
 import { PurchaseHistoryModule } from './purchase-History/purchase-history.module';
@@ -11,19 +9,18 @@ import { PurchaseHistoryModule } from './purchase-History/purchase-history.modul
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      host:'localhost',
+      host: 'localhost',
       type: 'postgres',
       port: 5432,
-      username:'admin',
+      username: 'admin',
       password: 'admin',
-      database:'postgres',
+      database: 'postgres',
       autoLoadEntities: true,
-      synchronize:true
-     
+      synchronize: true,
     }),
     ClubsModule,
     CustomersModule,
     PurchaseHistoryModule
-   ],
+  ],
 })
 export class AppModule { }

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { clubsSchema } from 'src/clubs/Models/clubsSchema';
+import { clubsSchema } from 'src/clubs/Models/club-schema';
+import { CustomerSubscriber } from './customer-subscriber/customer-subscriber';
 import { CustomersController } from './customers.controller';
 import { CustomersService } from './customers.service';
-import { CustomerSchema } from './Models/customersSchema';
+import { CustomerSchema } from './Models/customer-schema';
 
 @Module({
   imports:[
@@ -13,6 +14,6 @@ import { CustomerSchema } from './Models/customersSchema';
     ])
   ],
   controllers:[CustomersController],
-  providers:[CustomersService]
+  providers:[CustomersService,CustomerSubscriber]
 })
 export class CustomersModule {}

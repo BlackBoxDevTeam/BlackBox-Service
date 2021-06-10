@@ -2,7 +2,7 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { runInThisContext } from 'vm';
 import { CustomersService } from './customers.service';
-import { customersDto } from './Models/customersDto';
+import { customersDto } from './Models/customer-dto';
 
 @Controller()
 export class CustomersController {

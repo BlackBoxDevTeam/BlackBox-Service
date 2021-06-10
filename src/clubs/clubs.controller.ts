@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ClubsService } from './clubs.service';
-import { filterClubDto } from './Models/filterClubDto';
+import { filterClubDto } from './Models/filter-clubDto';
 
 @Controller()
 export class ClubsController {

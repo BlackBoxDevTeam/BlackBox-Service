@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { purchaseHistorySchema } from 'src/purchase-History/Models/purchase-history-Schema';
+import { purchaseHistorySchema } from 'src/purchase-History/Models/purchase-history-schema';
 import { ClubsController } from './clubs.controller';
 import { ClubsService } from './clubs.service';
-import { clubsSchema } from './Models/clubsSchema';
+import { clubsSchema } from './Models/club-schema';
 
 @Module({
  imports:[

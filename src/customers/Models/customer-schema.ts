@@ -1,8 +1,9 @@
 import { EntitySchema } from "typeorm";
-import { Customer } from "./customersModel";
+import { Customer } from "./customer-model";
 
 export const CustomerSchema = new EntitySchema<Customer>({
     name: "Customer",
+    target:Customer,
     columns: {
         id: {
             type: Number,
@@ -36,6 +37,10 @@ export const CustomerSchema = new EntitySchema<Customer>({
         password:{
             type : Number,
             nullable: true
+        },
+        point:{
+            type : Number,
+            nullable: true
         }
 
     },
@@ -43,7 +48,7 @@ export const CustomerSchema = new EntitySchema<Customer>({
       club:{
           type:'many-to-one',
           target:'Club',
-         
+         eager:true
       },
       Histories:{
           type:'one-to-many',

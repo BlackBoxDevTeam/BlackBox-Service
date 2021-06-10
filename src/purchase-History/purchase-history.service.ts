@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Between, FindConditions, LessThan, MoreThan, Repository } from 'typeorm';
-import { purchaseHistoryDto } from './Models/purchase-history-Dto';
-import { purchaseHistoryFilterDto } from './Models/purchase-history-filter-Dto';
-import { purchaseHistory } from './Models/purchase-history-Model';
+import { purchaseHistoryDto } from './Models/purchase-history-dto';
+import { purchaseHistoryFilterDto } from './Models/purchase-history-filter-dto';
+import { purchaseHistory } from './Models/purchase-history-model';
 
 @Injectable()
 export class PurchaseHistoryService {
@@ -22,13 +22,11 @@ export class PurchaseHistoryService {
             options.Customer = <any>dto.Customer
         }
 
-        if(dto.amount){
+        if (dto.amount) {
             options.amount = MoreThan(dto.amount)
         }
 
-        if (dto.id) {
-            options.Club = <any>dto.id;
-        }
+
 
         if (dto.fromDate && dto.toDate == null) {
             options.createdAt = MoreThan(dto.fromDate);
