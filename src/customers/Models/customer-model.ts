@@ -1,14 +1,17 @@
-import { Club } from "src/clubs/Models/club-model"
-import { purchaseHistory } from "src/purchase-History/Models/purchase-history-model"
+import { Club } from "src/clubs/models/club/club-model"
+import { PurchaseHistory } from "src/purchase-History/models/purchase-history-model"
+import { tag } from "./tag/tag-model"
 
 export  class Customer{
     id?:number
-    username?:string
-    password?:number
+    firstName?:string
+    lastName?:string
     star?:number
     point? : number
-    tag? : number[]
+    
     club?: Club
     nationalCode:number
-    Histories?: purchaseHistory[]
+    histories?: PurchaseHistory[]
+    createdAt ?: Date
+    tags : tag[]
 }

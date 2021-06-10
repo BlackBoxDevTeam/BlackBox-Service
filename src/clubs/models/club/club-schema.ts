@@ -31,7 +31,9 @@ export const  clubsSchema = new EntitySchema<any>({
         },
         pointsForQuickPurchase : {
             type:Number,
-            nullable:true
+            nullable:true,
+            default:0
+
         },
 
         starredPoints : {
@@ -40,6 +42,14 @@ export const  clubsSchema = new EntitySchema<any>({
             nullable:true
         }
     },
+    relations:{
+        tags :{
+            type:'one-to-many',
+            target : 'tag',
+            inverseSide:'club',
+            eager:true
+        }
+    }
     
     
 });

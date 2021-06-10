@@ -1,7 +1,7 @@
-export class purchaseHistoryFilterDto{
-    id:number
-    Customer : number
-    fromDate : Date
-    toDate : Date
+export class PurchaseHistoryFilterDto {
+    id: number
+    customer: number
+    fromDate: Date
+    toDate: Date
     amount: number
 }

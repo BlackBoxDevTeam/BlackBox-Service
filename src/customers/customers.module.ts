@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { clubsSchema } from 'src/clubs/Models/club-schema';
+import { clubsSchema } from 'src/clubs/models/club/club-schema';
 import { CustomerSubscriber } from './customer-subscriber/customer-subscriber';
 import { CustomersController } from './customers.controller';
 import { CustomersService } from './customers.service';
-import { CustomerSchema } from './Models/customer-schema';
+import { CustomerSchema } from './models/customer-schema';
+import { tagSchema } from './models/tag/tag-schema';
 
 @Module({
   imports:[
     TypeOrmModule.forFeature([
       CustomerSchema,
-      clubsSchema
+      clubsSchema,
+      tagSchema
     ])
   ],
   controllers:[CustomersController],

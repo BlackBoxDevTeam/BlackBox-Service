@@ -2,24 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Between, FindConditions, LessThan, MoreThan, Repository } from 'typeorm';
-import { purchaseHistoryDto } from './Models/purchase-history-dto';
-import { purchaseHistoryFilterDto } from './Models/purchase-history-filter-dto';
-import { purchaseHistory } from './Models/purchase-history-model';
+import { PurchaseHistoryDto } from './models/purchase-history-dto';
+import { PurchaseHistoryFilterDto } from './models/purchase-history-filter-dto';
+
+import { PurchaseHistory } from './models/purchase-history-model';
 
 @Injectable()
 export class PurchaseHistoryService {
     constructor(
-        @InjectRepository(purchaseHistory)
-        private purchaseHistoryRepository: Repository<purchaseHistory>
+        @InjectRepository(PurchaseHistory)
+        private purchaseHistoryRepository: Repository<PurchaseHistory>
     ) { }
-    insert(dto: purchaseHistoryDto) {
+    insert(dto: PurchaseHistoryDto) {
         return this.purchaseHistoryRepository.save(<any>dto);
     }
 
-    async filterPurchases(dto: purchaseHistoryFilterDto) {
-        const options: FindConditions<purchaseHistory> = {}
-        if (dto.Customer) {
-            options.Customer = <any>dto.Customer
+    async filterPurchases(dto: PurchaseHistoryFilterDto) {
+        const options: FindConditions<PurchaseHistory> = {}
+        if (dto.customer) {
+            options.customer = <any>dto.customer
         }
 
         if (dto.amount) {

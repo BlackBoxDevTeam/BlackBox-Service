@@ -1,5 +1,4 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { Club } from 'src/clubs/Models/club-model';
 import {
     Connection,
     EntitySubscriberInterface,
@@ -8,7 +7,7 @@ import {
     Repository,
     UpdateEvent,
 } from 'typeorm';
-import { Customer } from '../Models/customer-model';
+import { Customer } from '../models/customer-model';
 
 @EventSubscriber()
 export class CustomerSubscriber implements EntitySubscriberInterface<Customer> {
@@ -22,14 +21,20 @@ export class CustomerSubscriber implements EntitySubscriberInterface<Customer> {
 
         return Customer
     }
-
+    
     async afterUpdate(event: UpdateEvent<Customer>) {
-        const customer = await this.customersRepository.findOne(event.entity.id);
-        for (let i = 0; i < customer.club.starredPoints.length; i++) {
-            if (customer.point >= customer.club.starredPoints[i]) {
-                customer.star = i;
-            }
-        }
-        this.customersRepository.save(customer);
+        if(event.updatedColumns.find(x => x.propertyName === 'point')) {
+            
+           const customer = await this.customersRepository.findOne(event.entity.id);
+           if (customer.club.starredPoints) {
+               for (let i = 0; i < customer.club.starredPoints.length; i++) {
+                   if (customer.point >= customer.club.starredPoints[i]) {
+                       customer.star = i;
+                   }
+               }
+               this.customersRepository.save(customer);
+           }
+
+       }
     }
 }

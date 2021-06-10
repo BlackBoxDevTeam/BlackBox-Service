@@ -1,16 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { purchaseHistory } from 'src/purchase-History/Models/purchase-history-model';
+import { tag } from 'src/customers/models/tag/tag-model';
+import { PurchaseHistory } from 'src/purchase-History/models/purchase-history-model';
 
 import { Between, FindConditions, LessThan, MoreThan, Repository } from 'typeorm';
-import { ClubDto } from './Models/club-dto';
-import { Club } from './Models/club-model';
-import { filterClubDto } from './Models/filter-clubDto';
+import { ClubDto } from './models/club/club-dto';
+import { Club } from './models/club/club-model';
+
 
 @Injectable()
 export class ClubsService {
     constructor(@InjectRepository(Club)
     private clubsRepository: Repository<Club>,
+    @InjectRepository(tag)
+    private tagsRepository: Repository<tag>
 
     ) { }
     async add(dto: ClubDto) {
@@ -22,17 +25,20 @@ export class ClubsService {
         }
     }
 
-    async delete(dto: ClubDto) {
-        return await this.clubsRepository.delete(dto.id);
+    async delete(id : number) {
+        return await this.clubsRepository.delete(id);
     }
 
     async update(dto: ClubDto) {
         return await this.clubsRepository.save(dto);
     }
 
-    async get(dto: ClubDto) {
-        return await this.clubsRepository.findOne(dto.id);
+    async get(id : number) {
+        return await this.clubsRepository.findOne(id);
     }
 
+    async tag(tag){
+        return await this.tagsRepository.save(tag)
+    }
 
 }

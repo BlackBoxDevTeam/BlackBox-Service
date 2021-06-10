@@ -1,11 +1,10 @@
-import { Club } from "src/clubs/Models/club-model"
-import { Customer } from "src/customers/Models/customer-model"
+import { Customer } from "src/customers/models/customer-model"
 
-export class purchaseHistory{
+export class PurchaseHistory{
     id?: number
     amount  :number
     createdAt ?: Date
     pointsPurchase?: number
     pointsQuickPurchase?:number
-    Customer : Customer
+    customer :Customer
 }

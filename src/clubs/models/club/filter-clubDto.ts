@@ -1,5 +1,6 @@
-export class filterClubDto {
+export class FilterClubDto {
     id : number
     fromDate : Date
     toDate  : Date
+
 }

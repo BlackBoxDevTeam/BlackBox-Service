@@ -1,7 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ClubsService } from './clubs.service';
-import { filterClubDto } from './Models/filter-clubDto';
 
 @Controller()
 export class ClubsController {
@@ -14,21 +13,22 @@ async add(@Payload() clubdto ){
 }
 
 @MessagePattern('clubs/delete')
-async delete (@Payload() clubdto ){
-    return await this.clubsService.add(clubdto);
+async delete (@Payload() id : number ){
+    return await this.clubsService.delete(id);
 }
 
 @MessagePattern('clubs/update')
 async update(@Payload() clubdto ){
-    return await this.clubsService.add(clubdto);
+    return await this.clubsService.update(clubdto);
 }
 
 @MessagePattern('clubs/get')
-async get(@Payload() clubdto ){
-    return await this.clubsService.add(clubdto);
+async get(@Payload() clubID ){
+    return await this.clubsService.get(clubID);
 }
 
-
-
-
+@MessagePattern('clubs/tag')
+async tag (@Payload() tagDto){
+    return await this.clubsService.tag(tagDto);
+}
 }

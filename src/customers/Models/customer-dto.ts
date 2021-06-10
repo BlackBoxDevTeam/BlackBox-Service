@@ -1,10 +1,11 @@
-export  class customersDto {
+export  class CustomersDto {
     id?:number
     star?:number
     username?:string
     password? : number
-    tag? : number[]
+   
     club?: number
-    NationalCode?: number
+     nationalCode?: number
+     tags? :number[]
     
 }

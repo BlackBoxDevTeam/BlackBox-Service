@@ -1,7 +1,7 @@
-export class purchaseHistoryDto{
+export class PurchaseHistoryDto{
     id: number
     amount : number
-    Customer : number
+    customer : number
   
 }
 

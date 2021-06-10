@@ -14,12 +14,7 @@ export const CustomerSchema = new EntitySchema<Customer>({
             type: Number,
             default: 0,
         },
-        tag:{
-            type: 'enum',
-            enum: [0, 1, 2],
-            default: [],
-            array: true,
-        },
+       
 
         nationalCode:{
             type:Number,
@@ -28,20 +23,26 @@ export const CustomerSchema = new EntitySchema<Customer>({
             unique: true
         },
 
-        username:{
+        firstName:{
             type : String,
             nullable: true,
-            unique:true
+           
         },
 
-        password:{
-            type : Number,
+        lastName:{
+            type : String,
             nullable: true
         },
         point:{
             type : Number,
             nullable: true
-        }
+        },
+
+        createdAt:{
+            type:Date,
+            createDate:true
+        },
+
 
     },
     relations:{
@@ -50,16 +51,23 @@ export const CustomerSchema = new EntitySchema<Customer>({
           target:'Club',
          eager:true
       },
-      Histories:{
+      histories:{
           type:'one-to-many',
-          target:'purchaseHistory',
-          inverseSide:'Customer',
+          target:'PurchaseHistory',
+          inverseSide:'customer',
           eager:true,
           cascade:true,
           nullable: true
-          
+      },
 
-      }
+      tags:{
+        type:'many-to-many',
+        target : 'tag',
+        joinTable:true,
+        inverseSide:'tags',
+        cascade:['insert','update'],
+        eager:true
+      } 
 
     }
 })
