@@ -4,7 +4,7 @@ import { Between, FindConditions, LessThan, MoreThan, Repository } from 'typeorm
 import { CustomerFilterDto } from './models/cusotmer-filter-dto';
 import { CustomersDto } from './models/customer-dto';
 import { Customer } from './models/customer-model';
-import { tag } from './models/tag/tag-model';
+import { tag } from './models/tags/tag-model';
 
 
 @Injectable()
@@ -15,7 +15,8 @@ export class CustomersService {
     ){}
 
     async add(dto :CustomersDto){
-        dto.tags = <any>dto.tags.map(x => ({id : x}));
+        if(dto.tags) dto.tags = <any>dto.tags.map(x => ({id : x}));
+        
         return await this.customersRepository.save(<any>dto);
     }
 
@@ -24,6 +25,9 @@ export class CustomersService {
     }
     
     async edit(dto : CustomersDto){
+       if(dto.tags){
+           dto.tags = <any>dto.tags.map(x => ({id : x}));
+       }
      return await this.customersRepository.save(<any>dto);
     }
 

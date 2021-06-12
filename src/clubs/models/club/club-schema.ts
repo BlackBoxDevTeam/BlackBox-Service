@@ -1,7 +1,7 @@
 import { EntitySchema } from "typeorm";
 import { Club } from "./club-model";
 
-export const  clubsSchema = new EntitySchema<any>({
+export const  clubsSchema = new EntitySchema<Club>({
     name: "Club",
     target:Club,
     columns: {
@@ -16,20 +16,20 @@ export const  clubsSchema = new EntitySchema<any>({
 
         },
 
-        purchaseAmount: {
+        purchaseRatioRuleKey: {
             type:Number,
             nullable:true,
         },
 
-        pointForPurchase :{
+        purchaseRatioRulePoint :{
             type:Number,
             nullable:true,
         },
-        perviousPurchaseDistance : {
+        purchaseDateRuleKey : {
             type:Number,
             nullable:true
         },
-        pointsForQuickPurchase : {
+        purchaseDateRulePoint : {
             type:Number,
             nullable:true,
             default:0

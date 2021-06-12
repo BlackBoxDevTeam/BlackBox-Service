@@ -18,14 +18,6 @@ export const purchaseHistorySchema = new EntitySchema<PurchaseHistory>({
             createDate:true
         },
 
-        pointsPurchase:{
-            type:Number,
-            nullable:true
-        },
-        pointsQuickPurchase:{
-            type:Number,
-            nullable:true
-        }
         
     },
     relations:{
@@ -34,7 +26,7 @@ export const purchaseHistorySchema = new EntitySchema<PurchaseHistory>({
             target:'Customer',
             inverseSide : 'histories',
             nullable: true,
-           
+            
             
         },
     }

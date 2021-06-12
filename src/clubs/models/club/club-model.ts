@@ -1,13 +1,13 @@
-import { tag } from "src/customers/models/tag/tag-model"
-import { PurchaseHistory } from "src/purchase-History/models/purchase-history-model"
+import { tag } from "src/customers/models/tags/tag-model"
+import { PurchaseHistory } from "src/purchase-history/models/purchase-history-model"
 
 export class Club{
     id?:number
     title?:string 
-    purchaseAmount:number
-    pointForPurchase: number
-    perviousPurchaseDistance: number
-    pointsForQuickPurchase : number
+    purchaseRatioRuleKey:number
+    purchaseRatioRulePoint: number
+    purchaseDateRuleKey: number
+    purchaseDateRulePoint : number
     starredPoints?: number[]
     tags : tag[]
 }

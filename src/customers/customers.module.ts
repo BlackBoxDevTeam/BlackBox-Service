@@ -5,7 +5,7 @@ import { CustomerSubscriber } from './customer-subscriber/customer-subscriber';
 import { CustomersController } from './customers.controller';
 import { CustomersService } from './customers.service';
 import { CustomerSchema } from './models/customer-schema';
-import { tagSchema } from './models/tag/tag-schema';
+import { tagSchema } from './models/tags/tag-schema';
 
 @Module({
   imports:[

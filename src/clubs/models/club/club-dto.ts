@@ -1,5 +1,11 @@
 
 export  class ClubDto {
-    id?:number
     title?:string 
+    purchaseRatioRuleKey:number
+    purchaseRatioRulePoint: number
+    purchaseDateRuleKey: number
+    purchaseDateRulePoint : number
+    starredPoints?: number[]
+    tags : number[]
+
 }

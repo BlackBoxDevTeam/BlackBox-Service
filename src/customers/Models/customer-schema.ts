@@ -65,8 +65,8 @@ export const CustomerSchema = new EntitySchema<Customer>({
         target : 'tag',
         joinTable:true,
         inverseSide:'tags',
-        cascade:['insert','update'],
-        eager:true
+        eager:true,
+        cascade:true
       } 
 
     }

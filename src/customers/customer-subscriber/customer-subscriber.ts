@@ -21,20 +21,20 @@ export class CustomerSubscriber implements EntitySubscriberInterface<Customer> {
 
         return Customer
     }
-    
-    async afterUpdate(event: UpdateEvent<Customer>) {
-        if(event.updatedColumns.find(x => x.propertyName === 'point')) {
-            
-           const customer = await this.customersRepository.findOne(event.entity.id);
-           if (customer.club.starredPoints) {
-               for (let i = 0; i < customer.club.starredPoints.length; i++) {
-                   if (customer.point >= customer.club.starredPoints[i]) {
-                       customer.star = i;
-                   }
-               }
-               this.customersRepository.save(customer);
-           }
 
-       }
+    async afterUpdate(event: UpdateEvent<Customer>) {
+        if (event.updatedColumns.find(x => x.propertyName === 'point')) {
+            const customer = await this.customersRepository.findOne(event.entity.id);
+            if (customer.club.starredPoints) {
+                for (let i = 0; i < customer.club.starredPoints.length; i++) {
+
+                    if (event.entity.point >= customer.club.starredPoints[i]) {
+                        customer.star = i;
+                    }
+                }
+                this.customersRepository.save(customer);
+            }
+
+        }
     }
 }

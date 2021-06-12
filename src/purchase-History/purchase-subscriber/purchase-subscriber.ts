@@ -38,22 +38,25 @@ export class PurchaseSubscribe implements EntitySubscriberInterface<PurchaseHist
 
         let point = 0;
         const customer = await this.customerRepository.findOne(event.entity.customer);
-        if (customer.club.purchaseAmount && customer.club.pointForPurchase && customer.club.purchaseAmount <= event.entity.amount) {
-
-            point = parseInt(<any>(event.entity.amount / customer.club.purchaseAmount)) * customer.club.pointForPurchase
-           
+       
+        if (customer.club.purchaseRatioRuleKey && customer.club.purchaseRatioRulePoint && customer.club.purchaseRatioRuleKey <= event.entity.amount) {
+            point = parseInt(<any>(event.entity.amount / customer.club.purchaseRatioRuleKey)) * customer.club.purchaseRatioRulePoint
         }
-        if (customer.club.perviousPurchaseDistance && customer.club.pointsForQuickPurchase) {
+        if (customer.club.purchaseDateRuleKey && customer.club.purchaseDateRulePoint) {
             let getLastPurchase = await this.purchaseRepository.findOne({
                 where: { customer: event.entity.customer },
                 order: { createdAt: 'DESC' },
             })
-            const lastPurchase: any = new Date(getLastPurchase.createdAt);
-            const nowPurchase: any = new Date();
-            const diffTime = Math.abs(nowPurchase - lastPurchase);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
-            if (diffDays == customer.club.perviousPurchaseDistance) point += customer.club.pointsForQuickPurchase;
-        }    
+            console.log(getLastPurchase)
+            if(getLastPurchase){
+                const lastPurchase: any = new Date(getLastPurchase.createdAt);
+                const nowPurchase: any = new Date();
+                const diffTime = Math.abs(nowPurchase - lastPurchase);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+                if (diffDays == customer.club.purchaseDateRuleKey) point += customer.club.purchaseDateRulePoint;
+               
+            }
+        }
         customer.point += point
         await this.customerRepository.save(customer);
     }
